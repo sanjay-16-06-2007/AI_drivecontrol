@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartPark AI + Eco-Drive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="h-screen flex flex-col overflow-hidden text-sm">
+
+  <header class="h-16 border-b border-gray-800 bg-gray-950 px-6 flex items-center justify-between shrink-0">
+    <div class="flex items-center space-x-3">
+      <div class="bg-emerald-500 text-black font-black px-2.5 py-1 rounded text-lg tracking-wider">SP-AI</div>
+      <div>
+        <h1 class="font-extrabold text-base tracking-tight text-white flex items-center gap-2">
+          SmartPark AI <span class="text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-mono">+ EcoDrive Engine</span>
+        </h1>
+        <p class="text-xs text-gray-400">VEGA ARIES IoT V2 Powered Smart Mobility Platform</p>
+      </div>
+    </div>
+
+    <nav class="flex bg-gray-900 p-1 rounded-lg border border-gray-800 font-medium">
+      <button onclick="switchTab('slides')" id="tab-slides" class="px-4 py-1.5 rounded-md text-emerald-400 bg-gray-800 font-semibold transition-all">
+        <i class="fa-solid fa-layer-group mr-1.5"></i> Pitch Deck
+      </button>
+      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="px-4 py-1.5 rounded-md text-gray-400 hover:text-white transition-all">
+        <i class="fa-solid fa-gauge-high mr-1.5"></i> Live IoT Dashboard
+      </button>
+      <button onclick="switchTab('simulation')" id="tab-simulation" class="px-4 py-1.5 rounded-md text-gray-400 hover:text-white transition-all">
+        <i class="fa-solid fa-microchip mr-1.5"></i> Circuit & Simulation
+      </button>
+    </nav>
+
+    <div class="flex items-center space-x-3 font-mono text-xs">
+      <span class="flex h-2.5 w-2.5 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+      </span>
+      <span class="text-emerald-400">ARIES V2: CONNECTED</span>
+    </div>
+  </header>
+
+  <main class="flex-1 overflow-hidden relative">
+    <!-- View 1: Pitch Deck -->
+    <div id="view-slides" class="h-full flex flex-col p-6 overflow-y-auto custom-scrollbar">
+      <div class="max-w-6xl mx-auto w-full space-y-8 pb-12">
+        <section class="glass-card rounded-2xl p-8 border-l-4 border-l-emerald-500 relative overflow-hidden">
+          <span class="text-xs font-mono text-emerald-400 font-semibold uppercase tracking-widest">Hackathon Pitch Deck • Slide 01</span>
+          <h2 class="text-4xl font-black mt-2 text-white tracking-tight">SmartPark AI & Eco-Drive Guidance</h2>
+          <p class="text-lg text-gray-300 mt-2 max-w-2xl">Eliminating Urban Congestion and Tailpipe Emissions via IoT Edge Intelligence & Predictive Lane Guidance.</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- View 2: Dashboard -->
+    <div id="view-dashboard" class="h-full hidden p-6 overflow-y-auto custom-scrollbar">
+      <div class="max-w-7xl mx-auto space-y-6">
+        <div class="glass-card p-4 rounded-xl flex items-center justify-between">
+          <select id="terrainSelect" onchange="updateDashboardMetrics()" class="bg-gray-900 border border-gray-700 text-white rounded px-3 py-1 font-mono text-xs">
+            <option value="flat">Flat Urban (0° incline)</option>
+            <option value="uphill">Uphill Incline (+6° slope)</option>
+            <option value="downhill">Downhill Grade (-4° slope)</option>
+          </select>
+          <div class="font-mono text-xs text-emerald-400">CO2 SAVED: <span id="co2Val">142 g</span></div>
+        </div>
+        <div class="h-48 glass-card p-4 rounded-xl">
+          <canvas id="emissionChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- View 3: Simulation -->
+    <div id="view-simulation" class="h-full hidden p-6 overflow-y-auto custom-scrollbar">
+      <div class="max-w-7xl mx-auto space-y-6">
+        <div class="h-96 bg-black rounded-xl border border-gray-800 relative">
+          <canvas id="simCanvas" class="w-full h-full"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
